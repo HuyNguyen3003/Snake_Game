@@ -367,8 +367,12 @@ void endgame() {
 	ag = _getch();
 }
 void gifile() {
-	d = fopen("in5", "w");
-	fprintf(d, "%d", sl );
+    for(int i=0;i<strlen(name);i++){ // xoa ky tu xuong dong
+        if(name[i] == '\n') name[i] = '\0';
+    }
+	d = fopen("history.txt", "a");
+    fprintf(d,"%s: ",name);
+	fprintf(d, "%d\n", sl - 4 );
 	fclose(d);
 }
 void edit() {
