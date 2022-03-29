@@ -55,10 +55,10 @@ void intro() {
 		textcolor(u); gotoXY(62, 6);  printf("|");
 		textcolor(i-1); gotoXY(50, 6);  printf("Game con ran");
 		textcolor(2); gotoXY(88, 20); printf("CODE BY: ");
-		textcolor(2); gotoXY(97, 20); printf("6251071040");
-		textcolor(6); gotoXY(97, 21); printf("6251071105");
-		textcolor(4); gotoXY(97, 22); printf("6251071038");
-		textcolor(5); gotoXY(97, 23); printf("6251Abcxyz");
+		textcolor(2); gotoXY(97, 20); printf("6251071040 - Nguyen Pham Phu Huy");
+		textcolor(6); gotoXY(97, 21); printf("6251071105 - PHan Ngoc Nhu Tranh");
+		textcolor(4); gotoXY(97, 22); printf("6251071038 - Nguyen Ngoc Huy");
+		textcolor(5); gotoXY(97, 23); printf("6251071104 - Ho Vinh Tin");
 		i++; if (i == 10) i = 2;  u--; if (u == 2) u = 10; z++; Sleep(11);
 		textcolor(7); gotoXY(30, 10); printf("loading %d ",z);
 		if (z == 100) break;
