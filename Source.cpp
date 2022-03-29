@@ -9,11 +9,7 @@ int xq = -1, yq = -1;
 int ag;
 char name[30];
 int cl1 = -1; int cl2 = -1;
-
-////cc
-
-
-//
+///////////////
 void gifile();
 void intro();
 void edit();
@@ -31,14 +27,8 @@ void vetuong1();
 bool kttuong1();
 void endgame();
 
-
-
-/////mmmmmm
-
-
 //
 int main() {
-
 	//srand(time(NULL));
 	ShowCur(0);
 	do
@@ -51,10 +41,6 @@ int main() {
 		system("cls");
 		
 	} while (ag);
-
-
-	
-
 	textcolor(0);
 }
 void intro() {
@@ -296,9 +282,6 @@ void vetuong1() {
 		gotoXY(83, i); printf("|");
 	}
 
-
-
-
 }
 bool kttuong1() {
 	for (int i = 19; i < 22; i++)
@@ -425,5 +408,4 @@ void edit() {
 	gotoXY(10, 12); printf("chon thanh cong mau cho tuong  ");
 	system("cls");
 	}
-	/ ho vinh tin cntt k62
 
