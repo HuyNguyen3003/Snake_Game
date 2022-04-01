@@ -91,6 +91,7 @@ void rananqua();
 void vetuong1();
 bool kttuong1();
 void endgame();
+void time();
 
 int main() {
 	system("cls");
@@ -151,6 +152,7 @@ void play() {
 	vequa();
 	diem = 0;
 	while (true){
+		time();
 		gotoXY(tdx[sl], tdy[sl]); printf(" ");
 		veran();
 		gotoXY(50,1 ); printf("Diem: %d", diem);
@@ -376,4 +378,14 @@ void gifile() {
 	}
 	fprintf(d, "%s: %d\n",name, diem);
 	fclose(d);
+}
+void time(){ // hien thi thoi gian hien tai
+	SetColor(1);
+	gotoXY(115,5);
+	time_t rawtime; // LAY CHI SO THOI GIAN HIEN TAI CUA HE THONG
+	struct tm *info; //
+	char buffer[80];
+	time( &rawtime ); 
+	info = localtime( &rawtime );
+	printf("%s", asctime(info));
 }
