@@ -94,14 +94,14 @@ void intro() {
 			gotoXY(5, y); printf("||");
 			gotoXY(110, y); printf("||");
 		}
-		textcolor(u); gotoXY(49, 5);  printf("--------------");
-		textcolor(u); gotoXY(49, 7);  printf("--------------");
+		textcolor(u); gotoXY(49, 5);  printf("------------------");
+		textcolor(u); gotoXY(49, 7);  printf("------------------");
 		textcolor(u); gotoXY(49, 6);  printf("|");
-		textcolor(u); gotoXY(62, 6);  printf("|");
-		textcolor(i); gotoXY(50, 6);  printf("Game con ran");
+		textcolor(u); gotoXY(66, 6);  printf("|");
+		textcolor(i-1); gotoXY(50, 6);  printf("** SNAKE GAME **");
 		textcolor(2); gotoXY(88, 20); printf("CODE BY: ");
 		textcolor(2); gotoXY(67, 20); printf("6251071040 - Nguyen Pham Phu Huy");
-		textcolor(6); gotoXY(67, 21); printf("6251071105 - PHan Ngoc Nhu Tranh");
+		textcolor(6); gotoXY(67, 21); printf("6251071105 - Phan Ngoc Nhu Tranh");
 		textcolor(4); gotoXY(67, 22); printf("6251071038 - Nguyen Ngoc Huy");
 		textcolor(5); gotoXY(67, 23); printf("6251071104 - Ho Vinh Tin");
 		i++; if (i == 10) i = 2;  u--; if (u == 2) u = 10; z++; Sleep(14);
