@@ -10,7 +10,7 @@ int ag;
 char name[30];
 int diem;
 int map = 0; // lua chon che do choi
-
+//////////////
 void gifile(); // ghi lich su nguoi choi
 void Doc_file(); // xem lich su nguoi choi
 void intro();
@@ -41,9 +41,7 @@ int main() {
 	srand(time(NULL));
 	ShowCur(0);
 	do {
-		do {
-			Menu();
-		} while (map == 0);
+		Menu();
 		intro();
 		play();
 		endgame();
@@ -59,28 +57,61 @@ void Menu() {
 	gotoXY(45, 5); printf("1. PLAY");
 	gotoXY(45, 6); printf("2. LICH SU NGUOI CHOI");
 	gotoXY(45, 7); printf("Nhap lua chon: ");
-	scanf("%d", &luachon);
-	getchar();
+		char c = _getch();
+			if (c==49)
+			{
+				luachon = 1;
+			}
+			else if(c==50)
+			{
+				luachon = 2;
+			}
+
 	switch (luachon) {
 	case 1:
-		SetColor(10); 
+		SetColor(10);
 		gotoXY(20, 8);	printf("CHON LEVEL");
 		gotoXY(20, 9);	printf("1. DE");
 		gotoXY(20, 10);	printf("2. TRUNG BINH");
 		gotoXY(20, 11);	printf("3. KHO");
 		gotoXY(20, 12); printf("LEVEL: ");
-		scanf("%d", &luachon); getchar();
+		c = _getch();
+		if (c == 49)
+		{
+			luachon = 1;
+		}
+		else if (c == 50)
+		{
+			luachon = 2;
+		}
+		else if (c == 51)
+		{
+			luachon = 3;
+		}
 		switch (luachon) {
 		case 1: speed = 120; break;
 		case 2: speed = 100; break;
 		case 3: speed = 80; break;
 		}
-		SetColor(11); 
+		SetColor(11);
 		gotoXY(80, 8);  printf("CHON BAN DO:");	// lua chon map
-		gotoXY(80,9);	printf("1. MAP 1");
+		gotoXY(80, 9);	printf("1. MAP 1");
 		gotoXY(80, 10); printf("2. MAP 2");
 		gotoXY(80, 11); printf("3. MAP 3");
-		gotoXY(80, 12);	printf("MAP: "); scanf("%d", &luachon); getchar();
+		gotoXY(80, 12);	printf("MAP: ");
+		c = _getch();
+		if (c == 49)
+		{
+			luachon = 1;
+		}
+		else if (c == 50)
+		{
+			luachon = 2;
+		}
+		else if (c == 51)
+		{
+			luachon = 3;
+		}
 		switch (luachon) {
 		case 1: map = 1; break;
 		case 2: map = 2; break;
@@ -95,7 +126,7 @@ void Menu() {
 	system("cls");
 }
 void intro() {
-	int i = 2, u = 10; int z = 0; int m=35, n=10;
+	int i = 2, u = 10; int z = 0; int m = 35, n = 10;
 	while (true) {
 		textcolor(10);
 		for (int x = 7; x < 110; x++) {
@@ -117,17 +148,17 @@ void intro() {
 		textcolor(4); gotoXY(67, 22); printf("6251071040 - Nguyen Ngoc Huy");
 		textcolor(5); gotoXY(67, 23); printf("6251071104 - Ho Vinh Tin");
 		i++; if (i == 10) i = 2;
-		u--; 
-		if (u == 2) u = 10; z+=2;m++; Sleep(15);
-		textcolor(7);gotoXY(90, 10);printf("%d %c", z,37); 
-		gotoXY(m, n); printf("%c",164);
+		u--;
+		if (u == 2) u = 10; z += 2; m++; Sleep(15);
+		textcolor(7); gotoXY(90, 10); printf("%d %c", z, 37);
+		gotoXY(m, n); printf("%c", 164);
 		if (z == 100) break;
 	}
 	in4();
 	system("cls");
 }
 void in4() {
-	textcolor(7); gotoXY(30, 12); 
+	textcolor(7); gotoXY(30, 12);
 	printf("Nhap ten: ");
 	fgets(name, sizeof(name), stdin);
 }
@@ -182,35 +213,35 @@ bool kttuong2() { // kiem tra cham tuong 2
 	if (tdx[0] == 5 || tdx[0] == 110 || tdy[0] == 2 || tdy[0] == 25) return true;
 	// kiem tra tuong trong
 	for (int i = 19; i < 22; i++) {
-		if (tdx[0] == 28 && tdy[0] == i) 
+		if (tdx[0] == 28 && tdy[0] == i)
 			return true;
 	}
 	for (int i = 9; i < 12; i++) {
-		if (tdx[0] == 43 && tdy[0] == i) 
+		if (tdx[0] == 43 && tdy[0] == i)
 			return true;
 	}
 	for (int i = 13; i < 17; i++) {
-		if (tdx[0] == 94 && tdy[0] == i) 
+		if (tdx[0] == 94 && tdy[0] == i)
 			return true;
 	}
 	for (int i = 21; i < 24; i++) {
-		if (tdx[0] == 83 && tdy[0] == i) 
+		if (tdx[0] == 83 && tdy[0] == i)
 			return true;
 	}
 	for (int i = 25; i < 32; i++) {
-		if (tdx[0] == i && tdy[0] == 18) 
+		if (tdx[0] == i && tdy[0] == 18)
 			return true;
 	}
 	for (int i = 40; i < 47; i++) {
-		if (tdx[0] == i && tdy[0] == 8) 
+		if (tdx[0] == i && tdy[0] == 8)
 			return true;
 	}
 	for (int i = 90; i < 99; i++) {
-		if (tdx[0] == i && tdy[0] == 12) 
+		if (tdx[0] == i && tdy[0] == 12)
 			return true;
 	}
 	for (int i = 79; i < 89; i++) {
-		if (tdx[0] == i && tdy[0] == 20) 
+		if (tdx[0] == i && tdy[0] == 20)
 			return true;
 	}
 	return false;
@@ -238,19 +269,19 @@ void vetuong3() { // ban do 3
 }
 bool kttuong3() { // kiem tra cham tuong 3
 	// kiem tra tuong ngoai
-	if (tdx[0] == 6 || tdx[0] == 110 || tdy[0] == 2 || tdy[0] == 25) 
+	if (tdx[0] == 6 || tdx[0] == 110 || tdy[0] == 2 || tdy[0] == 25)
 		return true;
 	// kiem tra tuong trong
 	for (int i = 27; i < 85; i++) {
-		if (tdx[0] == i && tdy[0] == 8) 
+		if (tdx[0] == i && tdy[0] == 8)
 			return true;
-		else if (tdx[0] == i && tdy[0] == 19) 
+		else if (tdx[0] == i && tdy[0] == 19)
 			return true;
 	}
 	for (int i = 7; i < 21; i++) {
-		if (tdx[0] == 18 && tdy[0] == i) 
+		if (tdx[0] == 18 && tdy[0] == i)
 			return true;
-		else if (tdx[0] == 95 && tdy[0] == i) 
+		else if (tdx[0] == 95 && tdy[0] == i)
 			return true;
 	}
 	return false;
@@ -275,7 +306,7 @@ void play() {
 	diem = 0;
 	while (map) {
 		time();
-		textcolor(2); 
+		textcolor(2);
 		gotoXY(30, 1); printf("%s", name);
 		gotoXY(tdx[sl], tdy[sl]); printf(" ");
 		veran();
@@ -341,7 +372,7 @@ void ktran() {
 	}
 }
 void veran() {
-	int z=2;
+	int z = 2;
 	if (diem % 3 == 0)z++;
 	textcolor(z);
 
