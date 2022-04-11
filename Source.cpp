@@ -4,7 +4,7 @@
 FILE* d;
 int tdx[100] = { 0 }, tdy[100] = { 0 };
 int sl = 4;
-int speed = 300;
+int speed = -1;
 int xq = -1, yq = -1;
 int ag;
 char name[30];
@@ -71,9 +71,9 @@ void Menu() {
 		gotoXY(20, 12); printf("LEVEL: ");
 		scanf("%d", &luachon); getchar();
 		switch (luachon) {
-		case 1: speed = 250; break;
-		case 2: speed = 200; break;
-		case 3: speed = 100; break;
+		case 1: speed = 120; break;
+		case 2: speed = 100; break;
+		case 3: speed = 80; break;
 		}
 		SetColor(11); 
 		gotoXY(80, 8);  printf("CHON BAN DO:");	// lua chon map
