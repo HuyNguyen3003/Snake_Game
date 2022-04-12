@@ -51,78 +51,104 @@ int main() {
 }
 void Menu() {
 	vetuong1();
-	int luachon = 0;
-	// lua chon level
-	gotoXY(45, 4); SetColor(9); printf("========= MENU =========");
-	gotoXY(45, 5); printf("1. PLAY");
-	gotoXY(45, 6); printf("2. LICH SU NGUOI CHOI");
-	gotoXY(45, 7); printf("Nhap lua chon: ");
-		char c = _getch();
-			if (c==49)
-			{
-				luachon = 1;
+	ShowCur(0); // ẩn con trỏ
+    int color1 = 4,color2 = 2,color3 = 2; // chi dinh mau sac
+    int check = 1;
+    while(true){ // chon choi hoac xem lich su
+        SetColor(13);
+        if(check == 1){
+            color1 = 4;color2 = 2;color3 = 2;
+        }else if(check == 2){
+            color1 = 2;color2 = 4;color3 = 2;
+        }
+		SetColor(9);gotoXY(45,6);printf("========= MENU =========");
+        SetColor(color1);gotoXY(55,9);printf("CHOI");
+        SetColor(color2);gotoXY(55,10);printf("LICH SU");
+        if(_kbhit()){
+            char kitu = _getch();
+            if(kitu == -32){
+                kitu = _getch();
+                if(kitu == 80) check++;// di xuong 
+                else if(kitu == 72) check--;// di len
+            }else if(kitu == 13 && check == 1){
+				color1 = 4,color2 = 2,color3 = 2; // chi dinh mau sac
+    			check = 1;
+                break;
+            }else if(kitu == 13 && check == 2){
+				Doc_file();
+				system("pause");
+				system("cls");
+				vetuong1();
 			}
-			else if(c==50)
-			{
-				luachon = 2;
-			}
-
-	switch (luachon) {
-	case 1:
-		SetColor(10);
-		gotoXY(20, 8);	printf("CHON LEVEL");
-		gotoXY(20, 9);	printf("1. DE");
-		gotoXY(20, 10);	printf("2. TRUNG BINH");
-		gotoXY(20, 11);	printf("3. KHO");
-		gotoXY(20, 12); printf("LEVEL: ");
-		c = _getch();
-		if (c == 49)
-		{
-			luachon = 1;
-		}
-		else if (c == 50)
-		{
-			luachon = 2;
-		}
-		else if (c == 51)
-		{
-			luachon = 3;
-		}
-		switch (luachon) {
-		case 1: speed = 120; break;
-		case 2: speed = 100; break;
-		case 3: speed = 80; break;
-		}
-		SetColor(11);
-		gotoXY(80, 8);  printf("CHON BAN DO:");	// lua chon map
-		gotoXY(80, 9);	printf("1. MAP 1");
-		gotoXY(80, 10); printf("2. MAP 2");
-		gotoXY(80, 11); printf("3. MAP 3");
-		gotoXY(80, 12);	printf("MAP: ");
-		c = _getch();
-		if (c == 49)
-		{
-			luachon = 1;
-		}
-		else if (c == 50)
-		{
-			luachon = 2;
-		}
-		else if (c == 51)
-		{
-			luachon = 3;
-		}
-		switch (luachon) {
-		case 1: map = 1; break;
-		case 2: map = 2; break;
-		case 3: map = 3; break;
-		}
-		break;
-	case 2:Doc_file();
-		printf("\t\t\tNHAN PHIM BAT KY DE QUAY LAI MENU.\n");
-		ag = _getch(); if (_kbhit()) exit(0); // nhan phim bat ky de thoat
-		break;
-	}
+        }
+        if(check>2) check = 1;
+        else if(check<1) check = 2;
+    }
+	while(true){ // chon level
+        SetColor(13);
+        if(check == 1){
+            color1 = 4;color2 = 2;color3 = 2;
+        }else if(check == 2){
+            color1 = 2;color2 = 4;color3 = 2;
+        }else if(check == 3){
+            color1 = 2;color2 = 2;color3 = 4;
+        }
+		SetColor(9);gotoXY(45,6);printf("========= MENU =========");
+        SetColor(9);gotoXY(55,9);printf("CHON LEVEL");
+        SetColor(color1);gotoXY(55,11);printf("DE");
+		SetColor(color2);gotoXY(55,10);printf("       ");
+		SetColor(color2);gotoXY(55,12);printf("TRUNG BINH");
+		SetColor(color3);gotoXY(55,13);printf("KHO");
+        if(_kbhit()){
+            char kitu = _getch();
+            if(kitu == -32){
+                kitu = _getch();
+                if(kitu == 80) check++;// di xuong 
+                else if(kitu == 72) check--;// di len
+            }else if(kitu == 13){
+				color1 = 4,color2 = 2,color3 = 2; // chi dinh mau sac
+				if(check == 1) speed = 150;
+				else if(check == 2) speed = 100;
+				else if(check == 3) speed = 60;
+    			check = 1;
+                break;
+            }
+        }
+        if(check>3) check = 1;
+        else if(check < 1) check = 3;
+    }
+	while(true){ // chon map
+        SetColor(13);
+        if(check == 1){
+            color1 = 4;color2 = 2;color3 = 2;
+        }else if(check == 2){
+            color1 = 2;color2 = 4;color3 = 2;
+        }else if(check == 3){
+            color1 = 2;color2 = 2;color3 = 4;
+        }
+		SetColor(9);gotoXY(45,6);printf("========= MENU =========");
+        SetColor(9);gotoXY(55,9);printf("CHON BAN DO");
+        SetColor(color1);gotoXY(55,11);printf("BAN DO 1");
+		SetColor(color2);gotoXY(55,12);printf("BAN DO 2  ");
+		SetColor(color3);gotoXY(55,13);printf("BAN DO 3");
+        if(_kbhit()){
+            char kitu = _getch();
+            if(kitu == -32){
+                kitu = _getch();
+                if(kitu == 80) check++;// di xuong 
+                else if(kitu == 72) check--;// di len
+            }else if(kitu == 13){
+				color1 = 4,color2 = 2,color3 = 2; // chi dinh mau sac
+				if(check == 1) map = 1;
+				else if(check == 2) map = 2;
+				else if(check == 3) map = 3;
+    			check = 1;
+                break;
+            }
+        }
+        if(check>3) check = 1;
+        else if(check < 1) check = 3;
+    }
 	system("cls");
 }
 void intro() {
