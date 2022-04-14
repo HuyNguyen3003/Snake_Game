@@ -35,9 +35,10 @@ bool kttuong3(); // kiem tra cham tuong 3
 void veMap(); // ve ban do tong hop
 bool kiemtratuong(); // kiem tra tuong tong hop
 void printLoadingBar();
+void Map1(char kitu);
+void Map2(char kitu1, char kitu2);
+void Map3(char kitu1, char kitu2);
 /// </summary>
-
-
 int main() {
 	system("cls");
 	srand(time(NULL));
@@ -124,12 +125,19 @@ void Menu() {
 	while (true) { // chon level
 		SetColor(13);
 		if (check == 1) {
-			color1 = 4; color2 = 2; color3 = 2;
+			Map2(32, 32);
+			Map3(32, 32);
+			Map1(42);
+			color1 = 4; color2 = 2; color3 = 2
 		}
 		else if (check == 2) {
+			Map3(32, 32);
+			Map2(61,124);
 			color1 = 2; color2 = 4; color3 = 2;
 		}
 		else if (check == 3) {
+			Map2(32, 32);
+			Map3(61,124);
 			color1 = 2; color2 = 2; color3 = 4;
 		}
 		textcolor(7);
@@ -287,14 +295,7 @@ void vetuong2() { // ban do 2
 	}
 	// ve tuong ngoai
 	textcolor(10);
-	for (int x = 7; x < 110; x++) {
-		gotoXY(x, 2); printf("=");
-		gotoXY(x, 25); printf("=");
-	}
-	for (int y = 2; y < 26; y++) {
-		gotoXY(5, y); printf("||");
-		gotoXY(110, y); printf("||");
-	}
+	vetuong1();
 }
 bool kttuong2() { // kiem tra cham tuong 2
 	// kiem tra tuong ngoai
@@ -337,14 +338,7 @@ bool kttuong2() { // kiem tra cham tuong 2
 void vetuong3() { // ban do 3
 	int x, y;
 	textcolor(10);
-	for (x = 7; x < 110; x++) {
-		gotoXY(x, 2); printf("=");
-		gotoXY(x, 25); printf("=");
-	}
-	for (y = 2; y < 26; y++) {
-		gotoXY(5, y); printf("||");
-		gotoXY(110, y); printf("||");
-	}
+	vetuong1();
 	textcolor(13);
 	for (x = 27; x < 85; x++) {
 		gotoXY(x, 8); printf("=");
@@ -635,3 +629,39 @@ void trangtriran()
 	gotoXY(78, 19); printf("      /^|            \\ _ _ \\*");
 	gotoXY(78, 20); printf("      /^|            \\ _ _ \\*");
 }
+void Map1(char kitu)
+{
+	for (int x = 5; x < 30; x++) {
+		gotoXY(x, 7); printf("%c", kitu);
+		gotoXY(x, 18); printf("%c", kitu);
+	}
+	for (int y = 7; y < 19; y++) {
+		gotoXY(5, y); printf("%c", kitu);
+		gotoXY(29, y); printf("%c", kitu);
+	}
+}
+void Map2(char kitu1, char kitu2)
+{
+	int i;
+	for (i = 9; i <= 11; i++) { gotoXY(i, 12); printf("%c", kitu1); }
+	for (i = 23; i <= 25; i++) { gotoXY(i, 12); printf("%c", kitu1); }
+	for (i = 15; i <= 17; i++) { gotoXY(i, 8); printf("%c", kitu1); }
+	for (i = 15; i <= 17; i++) { gotoXY(i, 16); printf("%c", kitu1); }
+	gotoXY(10, 13); printf("%c", kitu2);
+	gotoXY(24, 13); printf("%c", kitu2);
+	gotoXY(16, 9); printf("%c", kitu2);
+	gotoXY(16, 17); printf("%c", kitu2);
+	Map1(42);
+}
+void Map3(char kitu1, char kitu2)
+{
+	int x, y;
+	textcolor(13);
+	for (x = 10; x < 25; x++) {
+		gotoXY(x, 10); printf("%c", kitu1);
+		gotoXY(x, 15); printf("%c", kitu1);
+	}
+	for (y = 10; y < 16; y++) {
+		gotoXY(8, y); printf("%c", kitu2);
+		gotoXY(26, y); printf("%c", kitu2);
+	}
