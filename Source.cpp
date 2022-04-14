@@ -33,6 +33,7 @@ void vetuong3(); // ban do 3
 bool kttuong3(); // kiem tra cham tuong 3
 void veMap(); // ve ban do tong hop
 bool kiemtratuong(); // kiem tra tuong tong hop
+void printLoadingBar();
 /// </summary>
 
 
@@ -50,110 +51,271 @@ int main() {
 	textcolor(0);
 }
 void Menu() {
+		
 	vetuong1();
 	ShowCur(0); // ẩn con trỏ
-    int color1 = 4,color2 = 2,color3 = 2; // chi dinh mau sac
-    int check = 1;
-    while(true){ // chon choi hoac xem lich su
-        SetColor(13);
-        if(check == 1){
-            color1 = 4;color2 = 2;color3 = 2;
-        }else if(check == 2){
-            color1 = 2;color2 = 4;color3 = 2;
-        }
-		SetColor(9);gotoXY(45,6);printf("========= MENU =========");
-        SetColor(color1);gotoXY(55,9);printf("CHOI");
-        SetColor(color2);gotoXY(55,10);printf("LICH SU");
-        if(_kbhit()){
-            char kitu = _getch();
-            if(kitu == -32){
-                kitu = _getch();
-                if(kitu == 80) check++;// di xuong 
-                else if(kitu == 72) check--;// di len
-            }else if(kitu == 13 && check == 1){
-				color1 = 4,color2 = 2,color3 = 2; // chi dinh mau sac
-    			check = 1;
-                break;
-            }else if(kitu == 13 && check == 2){
+	int color1 = 4, color2 = 2, color3 = 2; // chi dinh mau sac
+	int check = 1;
+	while (true) { // chon choi hoac xem lich su
+		SetColor(13);
+		if (check == 1) {
+			color1 = 4; color2 = 2; color3 = 2;
+		}
+		else if (check == 2) {
+			color1 = 2; color2 = 4; color3 = 2;
+		}
+		SetColor(15);
+		gotoXY(45, 6); printf("========= MENU =========");	
+		SetColor(color1); gotoXY(55, 9); printf("CHOI"); gotoXY(64, 9);
+		SetColor(color2); gotoXY(54, 12); printf("LICH SU");
+		textcolor(7);
+		gotoXY(78, 5); printf("       ---_ ......._-_--.");
+		gotoXY(78, 6); printf("      (|\\ /      / /| \\  \\");
+		gotoXY(78, 7); printf("      /  /     .'  -=-'   `.");
+		gotoXY(78, 8); printf("     /  /    .'             )");
+		gotoXY(78, 9); printf("   _/  /   .'        _.)   /");
+		gotoXY(78, 10); printf("  \\          _.-'    / .'*|");
+		gotoXY(78, 11); printf("   \\______.-'//    .'.' \\*|");
+		gotoXY(78, 12); printf("    \\|  \\ | //   .'.' _ |*|");
+		gotoXY(78, 13); printf("     `   \\|//  .'.'_ _ _|*|");
+		gotoXY(78, 14); printf("      .  .// .'.' | _ _ \\*|");
+		gotoXY(78, 15); printf("      \\`-|\\_/ /    \\ _ _ \\*\\");
+		gotoXY(78, 16); printf("       `/'\\__/      \\ _ _ \\*\\");
+		gotoXY(78, 17); printf("      /^|            \\ _ _ \\*");
+		gotoXY(78, 18); printf("      /^|            \\ _ _ \\*");
+		gotoXY(78, 19); printf("      /^|            \\ _ _ \\*");
+		gotoXY(78, 20); printf("      /^|            \\ _ _ \\*");
+		textcolor(7);
+		for (int i = 49; i < 66; i++)
+		{
+			gotoXY(i, 7); printf("_");
+			gotoXY(i, 13); printf("_");
+		}
+		for (int i = 8; i < 14; i++)
+		{
+			gotoXY(48, i); printf("|");
+			gotoXY(66, i); printf("|");
+		}	for (int i = 49; i < 66; i++)
+		{
+			gotoXY(i, 10); printf("_");
+		}
+	    textcolor(12); 
+		gotoXY(78, 5); printf("       ---_ ......._-_--.");
+		gotoXY(78, 6); printf("      (|\\ /      / /| \\  \\");
+		gotoXY(78, 7); printf("      /  /     .'  -=-'   `.");
+		gotoXY(78, 8); printf("     /  /    .'             )");
+		gotoXY(78, 9); printf("   _/  /   .'        _.)   /");
+		gotoXY(78, 10); printf("  \\          _.-'    / .'*|");
+		gotoXY(78, 11); printf("   \\______.-'//    .'.' \\*|");
+		gotoXY(78, 12); printf("    \\|  \\ | //   .'.' _ |*|");
+		gotoXY(78, 13); printf("     `   \\|//  .'.'_ _ _|*|");
+		gotoXY(78, 14); printf("      .  .// .'.' | _ _ \\*|");
+		gotoXY(78, 15); printf("      \\`-|\\_/ /    \\ _ _ \\*\\");
+		gotoXY(78, 16); printf("       `/'\\__/      \\ _ _ \\*\\");
+		gotoXY(78, 17); printf("      /^|            \\ _ _ \\*");
+		gotoXY(78, 18); printf("      /^|            \\ _ _ \\*");
+		gotoXY(78, 19); printf("      /^|            \\ _ _ \\*");
+		gotoXY(78, 20); printf("      /^|            \\ _ _ \\*");
+
+		
+		if (_kbhit()) {
+			
+			char kitu = _getch();
+			if (kitu == -32) {
+				kitu = _getch();
+				if (kitu == 80) {
+					check++;// di xuong 
+					gotoXY(64, 9); printf("  ");
+					gotoXY(64, 12); printf("!");
+				
+				}
+				else if (kitu == 72) { check--; 
+				gotoXY(64, 12); printf(" ");
+				gotoXY(64, 9); printf("!");
+			
+				}// di len
+			}
+			else if (kitu == 13 && check == 1) {
+				color1 = 4, color2 = 2, color3 = 2; // chi dinh mau sac
+				check = 1;
+				break;
+			}
+			else if (kitu == 13 && check == 2) {
 				Doc_file();
 				system("pause");
 				system("cls");
 				vetuong1();
 			}
-        }
-        if(check>2) check = 1;
-        else if(check<1) check = 2;
-    }
-	while(true){ // chon level
-        SetColor(13);
-        if(check == 1){
-            color1 = 4;color2 = 2;color3 = 2;
-        }else if(check == 2){
-            color1 = 2;color2 = 4;color3 = 2;
-        }else if(check == 3){
-            color1 = 2;color2 = 2;color3 = 4;
-        }
-		SetColor(9);gotoXY(45,6);printf("========= MENU =========");
-        SetColor(9);gotoXY(55,9);printf("CHON LEVEL");
-        SetColor(color1);gotoXY(55,11);printf("DE");
-		SetColor(color2);gotoXY(55,10);printf("       ");
-		SetColor(color2);gotoXY(55,12);printf("TRUNG BINH");
-		SetColor(color3);gotoXY(55,13);printf("KHO");
-        if(_kbhit()){
-            char kitu = _getch();
-            if(kitu == -32){
-                kitu = _getch();
-                if(kitu == 80) check++;// di xuong 
-                else if(kitu == 72) check--;// di len
-            }else if(kitu == 13){
-				color1 = 4,color2 = 2,color3 = 2; // chi dinh mau sac
-				if(check == 1) speed = 150;
-				else if(check == 2) speed = 100;
-				else if(check == 3) speed = 60;
-    			check = 1;
-                break;
-            }
-        }
-        if(check>3) check = 1;
-        else if(check < 1) check = 3;
-    }
-	while(true){ // chon map
-        SetColor(13);
-        if(check == 1){
-            color1 = 4;color2 = 2;color3 = 2;
-        }else if(check == 2){
-            color1 = 2;color2 = 4;color3 = 2;
-        }else if(check == 3){
-            color1 = 2;color2 = 2;color3 = 4;
-        }
-		SetColor(9);gotoXY(45,6);printf("========= MENU =========");
-        SetColor(9);gotoXY(55,9);printf("CHON BAN DO");
-        SetColor(color1);gotoXY(55,11);printf("BAN DO 1");
-		SetColor(color2);gotoXY(55,12);printf("BAN DO 2  ");
-		SetColor(color3);gotoXY(55,13);printf("BAN DO 3");
-        if(_kbhit()){
-            char kitu = _getch();
-            if(kitu == -32){
-                kitu = _getch();
-                if(kitu == 80) check++;// di xuong 
-                else if(kitu == 72) check--;// di len
-            }else if(kitu == 13){
-				color1 = 4,color2 = 2,color3 = 2; // chi dinh mau sac
-				if(check == 1) map = 1;
-				else if(check == 2) map = 2;
-				else if(check == 3) map = 3;
-    			check = 1;
-                break;
-            }
-        }
-        if(check>3) check = 1;
-        else if(check < 1) check = 3;
-    }
+		}
+		if (check > 2) check = 1;
+		else if (check < 1) check = 2;
+	}
+	system("cls");
+	while (true) { // chon level
+		SetColor(13);
+		if (check == 1) {
+			color1 = 4; color2 = 2; color3 = 2;
+		}
+		else if (check == 2) {
+			color1 = 2; color2 = 4; color3 = 2;
+		}
+		else if (check == 3) {
+			color1 = 2; color2 = 2; color3 = 4;
+		}
+		textcolor(7);
+		gotoXY(78, 5); printf("       ---_ ......._-_--.");
+		gotoXY(78, 6); printf("      (|\\ /      / /| \\  \\");
+		gotoXY(78, 7); printf("      /  /     .'  -=-'   `.");
+		gotoXY(78, 8); printf("     /  /    .'             )");
+		gotoXY(78, 9); printf("   _/  /   .'        _.)   /");
+		gotoXY(78, 10); printf("  \\          _.-'    / .'*|");
+		gotoXY(78, 11); printf("   \\______.-'//    .'.' \\*|");
+		gotoXY(78, 12); printf("    \\|  \\ | //   .'.' _ |*|");
+		gotoXY(78, 13); printf("     `   \\|//  .'.'_ _ _|*|");
+		gotoXY(78, 14); printf("      .  .// .'.' | _ _ \\*|");
+		gotoXY(78, 15); printf("      \\`-|\\_/ /    \\ _ _ \\*\\");
+		gotoXY(78, 16); printf("       `/'\\__/      \\ _ _ \\*\\");
+		gotoXY(78, 17); printf("      /^|            \\ _ _ \\*");
+		gotoXY(78, 18); printf("      /^|            \\ _ _ \\*");
+		gotoXY(78, 19); printf("      /^|            \\ _ _ \\*");
+		gotoXY(78, 20); printf("      /^|            \\ _ _ \\*");
+		SetColor(9); gotoXY(45, 6); printf("========= MENU =========");
+		SetColor(9); gotoXY(52, 9); printf("CHON LEVEL");
+		SetColor(color1); gotoXY(55, 11); printf("DE");
+		SetColor(color2); gotoXY(51, 13); printf("TRUNG BINH");
+		SetColor(color3); gotoXY(55, 15); printf("KHO");
+		if (_kbhit()) {
+			char kitu = _getch();
+			if (kitu == -32) {
+				kitu = _getch();
+				if (kitu == 80) check++;// di xuong 
+				else if (kitu == 72) check--;// di len
+			}
+			else if (kitu == 13) {
+				color1 = 4, color2 = 2, color3 = 2; // chi dinh mau sac
+				if (check == 1) speed = 150;
+				else if (check == 2) speed = 100;
+				else if (check == 3) speed = 60;
+				check = 1;
+				break;
+				
+			}
+		}
+		if (check > 3) check = 1;
+		else if (check < 1) check = 3;
+		textcolor(12);
+		gotoXY(78, 5); printf("       ---_ ......._-_--.");
+		gotoXY(78, 6); printf("      (|\\ /      / /| \\  \\");
+		gotoXY(78, 7); printf("      /  /     .'  -=-'   `.");
+		gotoXY(78, 8); printf("     /  /    .'             )");
+		gotoXY(78, 9); printf("   _/  /   .'        _.)   /");
+		gotoXY(78, 10); printf("  \\          _.-'    / .'*|");
+		gotoXY(78, 11); printf("   \\______.-'//    .'.' \\*|");
+		gotoXY(78, 12); printf("    \\|  \\ | //   .'.' _ |*|");
+		gotoXY(78, 13); printf("     `   \\|//  .'.'_ _ _|*|");
+		gotoXY(78, 14); printf("      .  .// .'.' | _ _ \\*|");
+		gotoXY(78, 15); printf("      \\`-|\\_/ /    \\ _ _ \\*\\");
+		gotoXY(78, 16); printf("       `/'\\__/      \\ _ _ \\*\\");
+		gotoXY(78, 17); printf("      /^|            \\ _ _ \\*");
+		gotoXY(78, 18); printf("      /^|            \\ _ _ \\*");
+		gotoXY(78, 19); printf("      /^|            \\ _ _ \\*");
+		gotoXY(78, 20); printf("      /^|            \\ _ _ \\*");
+		
+	}
+	system("cls");
+	while (true) { // chon map
+		SetColor(13);
+		
+		if (check == 1) {
+			color1 = 4; color2 = 2; color3 = 2;
+		}
+		else if (check == 2) {
+			color1 = 2; color2 = 4; color3 = 2;
+		}
+		else if (check == 3) {
+			color1 = 2; color2 = 2; color3 = 4;
+		}
+		textcolor(7);
+		gotoXY(78, 5); printf("       ---_ ......._-_--.");
+		gotoXY(78, 6); printf("      (|\\ /      / /| \\  \\");
+		gotoXY(78, 7); printf("      /  /     .'  -=-'   `.");
+		gotoXY(78, 8); printf("     /  /    .'             )");
+		gotoXY(78, 9); printf("   _/  /   .'        _.)   /");
+		gotoXY(78, 10); printf("  \\          _.-'    / .'*|");
+		gotoXY(78, 11); printf("   \\______.-'//    .'.' \\*|");
+		gotoXY(78, 12); printf("    \\|  \\ | //   .'.' _ |*|");
+		gotoXY(78, 13); printf("     `   \\|//  .'.'_ _ _|*|");
+		gotoXY(78, 14); printf("      .  .// .'.' | _ _ \\*|");
+		gotoXY(78, 15); printf("      \\`-|\\_/ /    \\ _ _ \\*\\");
+		gotoXY(78, 16); printf("       `/'\\__/      \\ _ _ \\*\\");
+		gotoXY(78, 17); printf("      /^|            \\ _ _ \\*");
+		gotoXY(78, 18); printf("      /^|            \\ _ _ \\*");
+		gotoXY(78, 19); printf("      /^|            \\ _ _ \\*");
+		gotoXY(78, 20); printf("      /^|            \\ _ _ \\*");
+		SetColor(9); gotoXY(45, 6); printf("========= MENU =========");
+		SetColor(9); gotoXY(52, 9); printf("CHON BAN DO");
+		SetColor(color1); gotoXY(53, 11); printf("BAN DO 1");
+		SetColor(color2); gotoXY(53, 13); printf("BAN DO 2  ");
+		SetColor(color3); gotoXY(53, 15); printf("BAN DO 3");
+		if (_kbhit()) {
+			char kitu = _getch();
+			if (kitu == -32) {
+				kitu = _getch();
+				if (kitu == 80) check++;// di xuong 
+				else if (kitu == 72) check--;// di len
+			}
+			else if (kitu == 13) {
+				color1 = 4, color2 = 2, color3 = 2; // chi dinh mau sac
+				if (check == 1) map = 1;
+				else if (check == 2) map = 2;
+				else if (check == 3) map = 3;
+				check = 1;
+				break;
+			}
+		}
+		if (check > 3) check = 1;
+		else if (check < 1) check = 3;
+		textcolor(12);
+		gotoXY(78, 5); printf("       ---_ ......._-_--.");
+		gotoXY(78, 6); printf("      (|\\ /      / /| \\  \\");
+		gotoXY(78, 7); printf("      /  /     .'  -=-'   `.");
+		gotoXY(78, 8); printf("     /  /    .'             )");
+		gotoXY(78, 9); printf("   _/  /   .'        _.)   /");
+		gotoXY(78, 10); printf("  \\          _.-'    / .'*|");
+		gotoXY(78, 11); printf("   \\______.-'//    .'.' \\*|");
+		gotoXY(78, 12); printf("    \\|  \\ | //   .'.' _ |*|");
+		gotoXY(78, 13); printf("     `   \\|//  .'.'_ _ _|*|");
+		gotoXY(78, 14); printf("      .  .// .'.' | _ _ \\*|");
+		gotoXY(78, 15); printf("      \\`-|\\_/ /    \\ _ _ \\*\\");
+		gotoXY(78, 16); printf("       `/'\\__/      \\ _ _ \\*\\");
+		gotoXY(78, 17); printf("      /^|            \\ _ _ \\*");
+		gotoXY(78, 18); printf("      /^|            \\ _ _ \\*");
+		gotoXY(78, 19); printf("      /^|            \\ _ _ \\*");
+		gotoXY(78, 20); printf("      /^|            \\ _ _ \\*");
+	}
 	system("cls");
 }
 void intro() {
-	int i = 2, u = 10; int z = 0; int m = 35, n = 10;
+	
+	int i = 2, u = 10; float z = 0; int m = 31, n = 10;
 	while (true) {
+		textcolor(7);
+		gotoXY(78, 3); printf("       ---_ ......._-_--.");
+		gotoXY(78, 4); printf("      (|\\ /      / /| \\  \\");
+		gotoXY(78, 5); printf("      /  /     .'  -=-'   `.");
+		gotoXY(78, 6); printf("     /  /    .'             )");
+		gotoXY(78, 7); printf("   _/  /   .'        _.)   /");
+		gotoXY(78, 8); printf("  \\          _.-'    / .'*|");
+		gotoXY(78, 9); printf("   \\______.-'//    .'.' \\*|");
+		gotoXY(78, 10); printf("    \\|  \\ | //   .'.' _ |*|");
+		gotoXY(78, 11); printf("     `   \\|//  .'.'_ _ _|*|");
+		gotoXY(78, 12); printf("      .  .// .'.' | _ _ \\*|");
+		gotoXY(78, 13); printf("      \\`-|\\_/ /    \\ _ _ \\*\\");
+		gotoXY(78, 14); printf("       `/'\\__/      \\ _ _ \\*\\");
+		gotoXY(78, 15); printf("      /^|            \\ _ _ \\*");
+		gotoXY(78, 16); printf("      /^|            \\ _ _ \\*");
+		gotoXY(78, 17); printf("      /^|            \\ _ _ \\*");
+		gotoXY(78, 18); printf("      /^|            \\ _ _ \\*");
 		textcolor(10);
 		for (int x = 7; x < 110; x++) {
 			gotoXY(x, 2); printf("=");
@@ -168,15 +330,36 @@ void intro() {
 		textcolor(u); gotoXY(49, 6);  printf("|");
 		textcolor(u); gotoXY(62, 6);  printf("|");
 		textcolor(i); gotoXY(50, 6);  printf(" SNAKE GAME");
-		textcolor(2); gotoXY(88, 20); printf("CODE BY: ");
-		textcolor(2); gotoXY(67, 20); printf("6251071038 - Nguyen Pham Phu Huy");
-		textcolor(6); gotoXY(67, 21); printf("6251071105 - PHan Ngoc Nhu Tranh");
-		textcolor(4); gotoXY(67, 22); printf("6251071040 - Nguyen Ngoc Huy");
-		textcolor(5); gotoXY(67, 23); printf("6251071104 - Ho Vinh Tin");
+		textcolor(2); gotoXY(30, 20); printf("CODE BY: ");
+		textcolor(2); gotoXY(40, 20); printf("6251071038 - Nguyen Pham Phu Huy");
+		textcolor(6); gotoXY(40, 21); printf("6251071105 - PHan Ngoc Nhu Tranh");
+		textcolor(4); gotoXY(40, 22); printf("6251071040 - Nguyen Ngoc Huy");
+		textcolor(5); gotoXY(40, 23); printf("6251071104 - Ho Vinh Tin");
+		textcolor(12);
+		gotoXY(78, 3); printf("       ---_ ......._-_--.");
+		gotoXY(78, 4); printf("      (|\\ /      / /| \\  \\");
+		gotoXY(78, 5); printf("      /  /     .'  -=-'   `.");
+		gotoXY(78, 6); printf("     /  /    .'             )");
+		gotoXY(78, 7); printf("   _/  /   .'        _.)   /");
+		gotoXY(78, 8); printf("  \\          _.-'    / .'*|");
+		gotoXY(78, 9); printf("   \\______.-'//    .'.' \\*|");
+		gotoXY(78, 10); printf("    \\|  \\ | //   .'.' _ |*|");
+		gotoXY(78, 11); printf("     `   \\|//  .'.'_ _ _|*|");
+		gotoXY(78, 12); printf("      .  .// .'.' | _ _ \\*|");
+		gotoXY(78, 13); printf("      \\`-|\\_/ /    \\ _ _ \\*\\");
+		gotoXY(78, 14); printf("       `/'\\__/      \\ _ _ \\*\\");
+		gotoXY(78, 15); printf("      /^|            \\ _ _ \\*");
+		gotoXY(78, 16); printf("      /^|            \\ _ _ \\*");
+		gotoXY(78, 17); printf("      /^|            \\ _ _ \\*");
+		gotoXY(78, 18); printf("      /^|            \\ _ _ \\*");
 		i++; if (i == 10) i = 2;
 		u--;
-		if (u == 2) u = 10; z += 2; m++; Sleep(15);
-		textcolor(7); gotoXY(90, 10); printf("%d %c", z, 37);
+		if (u == 2) u = 10; z += 2.5; m++; Sleep(20);
+		textcolor(7); gotoXY(73, 10); printf("%d %c", (int)z, 37);
+		int o = 2;
+		textcolor(i);gotoXY(m, n); printf("%c", 164);
+		if (o == 15)o = 2;
+		
 		gotoXY(m, n); printf("%c", 164);
 		if (z == 100) break;
 	}
@@ -521,10 +704,9 @@ void endgame() {
 	gotoXY(20, 8); printf("*     ***    * * * *   *       *  *        *         *   *   *    *        * *    ");
 	gotoXY(20, 9); printf(" *       *  *       *  *       *  *         *       *     * *     *        *   *  ");
 	gotoXY(20, 10); printf("   * * *   *         * *       *  * * * *     * * *        *      * * * *  *    * ");
-	gotoXY(35, 15); printf("Name        : %s", name);
-	gotoXY(35, 16); printf("Diem cua ban: %d", sl - 4);
-	gotoXY(35, 18); printf("Neu muon thoat nhan dau X, muon choi tiep nhap ki tu bat ki.\n");
-	gotoXY(35, 19); printf("(Diem cua ban da duoc luu vao file, nap vip de co the xem)");
+	gotoXY(35, 15); printf("Name         :  %s", name);
+	gotoXY(35, 16); printf("Diem cua ban :  %d", sl - 4);
+	gotoXY(35, 18); printf("Neu muon thoat nhan alt + f4, muon choi tiep nhap ki tu bat ki.\n");
 	ag = _getch();
 }
 void gifile() { // ghi lich su nguoi choi
