@@ -2,20 +2,7 @@
 #include <conio.h> 
 #include<ctime> 
 #include <windows.h>
-//======= lấy tọa độ x của con trỏ hiện tại =============
-int whereX() {
-	CONSOLE_SCREEN_BUFFER_INFO csbi;
-	if (GetConsoleScreenBufferInfo(GetStdHandle(STD_OUTPUT_HANDLE), &csbi))
-		return csbi.dwCursorPosition.X;
-	return -1;
-}
-//========= lấy tọa độ y của con trỏ hiện tại =======
-int whereY() {
-	CONSOLE_SCREEN_BUFFER_INFO csbi;
-	if (GetConsoleScreenBufferInfo(GetStdHandle(STD_OUTPUT_HANDLE), &csbi))
-		return csbi.dwCursorPosition.Y;
-	return -1;
-}
+
 //============== dịch con trỏ hiện tại đến điểm có tọa độ (x,y) ==========
 void gotoXY(int x, int y) {
 	HANDLE hConsoleOutput;
