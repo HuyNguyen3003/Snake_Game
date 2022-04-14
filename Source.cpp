@@ -93,18 +93,21 @@ void Menu() {
 			char kitu = _getch();
 			if (kitu == -32) {
 				kitu = _getch();
-				if (kitu == 80) {
-					check++;// di xuong 
-					gotoXY(64, 9); printf("  ");
-					gotoXY(64, 12); printf("!");
-
+				if (kitu == 80)
+					check = check != 1 ? 1 : 2;// di xuong 
+				else if (kitu == 72)
+					check = check != 2 ? 2 : 1;
+			// di len
+				if(check ==1)
+				{
+					gotoXY(52, 12); printf(" ");
+					gotoXY(52, 9); printf("%c",16);
 				}
-				else if (kitu == 72) {
-					check--;
-					gotoXY(64, 12); printf(" ");
-					gotoXY(64, 9); printf("!");
-
-				}// di len
+				else if (check == 2)
+				{
+					gotoXY(52, 9); printf(" ");
+					gotoXY(52, 12); printf("%c",16);
+				}
 			}
 			else if (kitu == 13 && check == 1) {
 				color1 = 4, color2 = 2, color3 = 2; // chi dinh mau sac
@@ -125,19 +128,12 @@ void Menu() {
 	while (true) { // chon level
 		SetColor(13);
 		if (check == 1) {
-			Map2(32, 32);
-			Map3(32, 32);
-			Map1(42);
-			color1 = 4; color2 = 2; color3 = 2
+			color1 = 4; color2 = 2; color3 = 2;
 		}
 		else if (check == 2) {
-			Map3(32, 32);
-			Map2(61,124);
 			color1 = 2; color2 = 4; color3 = 2;
 		}
 		else if (check == 3) {
-			Map2(32, 32);
-			Map3(61,124);
 			color1 = 2; color2 = 2; color3 = 4;
 		}
 		textcolor(7);
@@ -174,12 +170,19 @@ void Menu() {
 		SetColor(13);
 
 		if (check == 1) {
+			Map2(32, 32);
+			Map3(32, 32);
+			Map1(42);
 			color1 = 4; color2 = 2; color3 = 2;
 		}
 		else if (check == 2) {
+			Map3(32, 32);
+			Map2(61,124);
 			color1 = 2; color2 = 4; color3 = 2;
 		}
 		else if (check == 3) {
+			Map2(32, 32);
+			Map3(61,124);
 			color1 = 2; color2 = 2; color3 = 4;
 		}
 		textcolor(7);
@@ -629,6 +632,7 @@ void trangtriran()
 	gotoXY(78, 19); printf("      /^|            \\ _ _ \\*");
 	gotoXY(78, 20); printf("      /^|            \\ _ _ \\*");
 }
+// review map
 void Map1(char kitu)
 {
 	for (int x = 5; x < 30; x++) {
@@ -665,3 +669,5 @@ void Map3(char kitu1, char kitu2)
 		gotoXY(8, y); printf("%c", kitu2);
 		gotoXY(26, y); printf("%c", kitu2);
 	}
+	Map1(42);
+}
