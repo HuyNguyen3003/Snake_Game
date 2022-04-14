@@ -237,7 +237,7 @@ void intro() {
 		textcolor(i); gotoXY(50, 6);  printf(" SNAKE GAME");
 		textcolor(2); gotoXY(30, 20); printf("CODE BY: ");
 		textcolor(2); gotoXY(40, 20); printf("6251071038 - Nguyen Pham Phu Huy");
-		textcolor(6); gotoXY(40, 21); printf("6251071105 - PHan Ngoc Nhu Tranh");
+		textcolor(6); gotoXY(40, 21); printf("6251071105 - Phan Ngoc Nhu Tranh");
 		textcolor(4); gotoXY(40, 22); printf("6251071040 - Nguyen Ngoc Huy");
 		textcolor(5); gotoXY(40, 23); printf("6251071104 - Ho Vinh Tin");
 		textcolor(12);
@@ -461,7 +461,7 @@ void veran() {
 	if (diem % 3 == 0)z++;
 	textcolor(z);
 
-	for (int i = 0; i < sl; i++) {
+	for (int i = 0; i < sl; i++){
 		if (i == 0) {
 			gotoXY(tdx[i], tdy[i]); printf("0");
 		}
@@ -470,12 +470,13 @@ void veran() {
 		}
 	}
 }
-void dcran(int x, int y) {
+void dcran(int x, int y){
 	for (int i = sl; i > 0; i--) {
 		tdx[i] = tdx[i - 1];
 		tdy[i] = tdy[i - 1];
 	}
-	tdx[0] = x; tdy[0] = y;
+	tdx[0] = x; 
+	tdy[0] = y;
 }
 void ktqua() {
 	xq = rand() % (100 - 10 + 1) + 10;
