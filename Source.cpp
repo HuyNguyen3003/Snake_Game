@@ -3,7 +3,7 @@
 /// <summary>
 FILE* d;
 int tdx[100] = { 0 }, tdy[100] = { 0 };
-int sl = 4;
+int sl = 2;
 int speed = -1;
 int xq = -1, yq = -1;
 int ag;
@@ -11,15 +11,17 @@ char name[30];
 int diem;
 int map = 0; // lua chon che do choi
 //////////////
+void ChonLevel(int check, int color1, int color2, int color3);
+void ChonMap(int check, int color1, int color2, int color3);
 void trangtriran();
 void gifile(); // ghi lich su nguoi choi
 void Doc_file(); // xem lich su nguoi choi
 void intro();
 void in4();
 void play();
-void ktran();
+void khoitaoran();
 void veran();
-void dcran(int x, int y);
+void dichuyenran(int x, int y);
 void ktqua();
 void vequa();
 void rananqua();
@@ -58,6 +60,10 @@ void Menu() {
 	ShowCur(0); // ẩn con trỏ
 	int color1 = 4, color2 = 2, color3 = 2; // chi dinh mau sac
 	int check = 1;
+	SetColor(15);
+	gotoXY(45, 6); printf("========= MENU =========");
+	SetColor(color1); gotoXY(52, 9); printf("%c  CHOI",16); gotoXY(64, 9);
+	SetColor(color2); gotoXY(54, 12); printf("LICH SU");
 	while (true) { // chon choi hoac xem lich su
 		SetColor(13);
 		if (check == 1) {
@@ -93,10 +99,12 @@ void Menu() {
 			char kitu = _getch();
 			if (kitu == -32) {
 				kitu = _getch();
-				if (kitu == 80)
-					check = check != 1 ? 1 : 2;// di xuong 
-				else if (kitu == 72)
+				if (kitu == 80) {
+					check = check != 1 ? 1 : 2;// di xuong
+				}
+				else if (kitu == 72) {
 					check = check != 2 ? 2 : 1;
+				}
 			// di len
 				if(check ==1)
 				{
@@ -124,6 +132,11 @@ void Menu() {
 		if (check > 2) check = 1;
 		else if (check < 1) check = 2;
 	}
+	ChonLevel(check, color1, color2, color3);
+	ChonMap(check, color1, color2, color3);
+}
+void ChonLevel(int check, int color1,int color2, int color3)
+{
 	system("cls");
 	while (true) { // chon level
 		SetColor(13);
@@ -165,6 +178,9 @@ void Menu() {
 		textcolor(12);
 		trangtriran();
 	}
+}
+void ChonMap(int check, int color1,int color2, int color3)
+{
 	system("cls");
 	while (true) { // chon map
 		SetColor(13);
@@ -177,12 +193,12 @@ void Menu() {
 		}
 		else if (check == 2) {
 			Map3(32, 32);
-			Map2(61,124);
+			Map2(61, 124);
 			color1 = 2; color2 = 4; color3 = 2;
 		}
 		else if (check == 3) {
 			Map2(32, 32);
-			Map3(61,124);
+			Map3(61, 124);
 			color1 = 2; color2 = 2; color3 = 4;
 		}
 		textcolor(7);
@@ -237,7 +253,7 @@ void intro() {
 		textcolor(i); gotoXY(50, 6);  printf(" SNAKE GAME");
 		textcolor(2); gotoXY(30, 20); printf("CODE BY: ");
 		textcolor(2); gotoXY(40, 20); printf("6251071038 - Nguyen Pham Phu Huy");
-		textcolor(6); gotoXY(40, 21); printf("6251071105 - Phan Ngoc Nhu Tranh");
+		textcolor(6); gotoXY(40, 21); printf("6251071105 - PHan Ngoc Nhu Tranh");
 		textcolor(4); gotoXY(40, 22); printf("6251071040 - Nguyen Ngoc Huy");
 		textcolor(5); gotoXY(40, 23); printf("6251071104 - Ho Vinh Tin");
 		textcolor(12);
@@ -383,7 +399,7 @@ bool kiemtratuong() { // kiem tra tuong tong hop
 }
 void play() {
 	veMap();
-	ktran();
+	khoitaoran();
 	int check = 2;
 	int x = tdx[0], y = tdy[0];
 	ktqua();
@@ -444,13 +460,13 @@ void play() {
 		}
 		if (kiemtratuong()) break;
 		rananqua();
-		dcran(x, y);
+		dichuyenran(x, y);
 		Sleep(speed);
 	}
 	gifile();
 	system("cls");
 }
-void ktran() {
+void khoitaoran() {
 	int x = 56; int y = 12;
 	for (int i = 0; i < sl; i++) {
 		tdx[i] = x--; tdy[i] = y;
@@ -461,7 +477,7 @@ void veran() {
 	if (diem % 3 == 0)z++;
 	textcolor(z);
 
-	for (int i = 0; i < sl; i++){
+	for (int i = 0; i < sl; i++) {
 		if (i == 0) {
 			gotoXY(tdx[i], tdy[i]); printf("0");
 		}
@@ -470,13 +486,12 @@ void veran() {
 		}
 	}
 }
-void dcran(int x, int y){
+void dichuyenran(int x, int y) {
 	for (int i = sl; i > 0; i--) {
 		tdx[i] = tdx[i - 1];
 		tdy[i] = tdy[i - 1];
 	}
-	tdx[0] = x; 
-	tdy[0] = y;
+	tdx[0] = x; tdy[0] = y;
 }
 void ktqua() {
 	xq = rand() % (100 - 10 + 1) + 10;
@@ -582,7 +597,7 @@ void endgame() {
 	gotoXY(20, 9); printf(" *       *  *       *  *       *  *         *       *     * *     *        *   *  ");
 	gotoXY(20, 10); printf("   * * *   *         * *       *  * * * *     * * *        *      * * * *  *    * ");
 	gotoXY(35, 15); printf("Name         :  %s", name);
-	gotoXY(35, 16); printf("Diem cua ban :  %d", sl - 4);
+	gotoXY(35, 16); printf("Diem cua ban :  %d", diem);
 	gotoXY(35, 18); printf("Neu muon thoat nhan alt + f4, muon choi tiep nhap ki tu bat ki.\n");
 	ag = _getch();
 }
