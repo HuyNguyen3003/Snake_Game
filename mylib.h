@@ -61,7 +61,7 @@ void veran() {
 	int z = 2;
 	if (diem % 3 == 0)z++;
 	textcolor(z);
-
+t
 	for (int i = 0; i < sl; i++) {
 		if (i == 0) {
 			gotoXY(tdx[i], tdy[i]); printf("0");
@@ -204,15 +204,6 @@ void Doc_file() { // xem lich su nguoi choi
 		printf("%s", str);
 	}
 	fclose(d);
-}
-void time() { // hien thi thoi gian hien tai
-	SetColor(1);
-	time_t rawtime; // LAY CHI SO THOI GIAN HIEN TAI CUA HE THONG
-	struct tm* info; //
-	char buffer[80];
-	time(&rawtime);
-	info = localtime(&rawtime);
-	gotoXY(70, 1); printf("%s", asctime(info));
 }
 void trangtriran()
 {
@@ -625,7 +616,6 @@ void play() {
 	vequa();
 	diem = 0;
 	while (map) {
-		time();
 		textcolor(2);
 		gotoXY(30, 1); printf("%s", name);
 		gotoXY(tdx[sl], tdy[sl]); printf(" ");
