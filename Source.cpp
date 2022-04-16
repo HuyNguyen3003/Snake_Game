@@ -2,22 +2,21 @@
 #include"mylib.h"
 
 //////////////
-void ChonLevel(int check, int color1, int color2, int color3);
-void ChonMap(int check, int color1, int color2, int color3);
-void trangtriran();
+void ChonLevel(int check, int color1, int color2, int color3); // chon cap do choi
+void ChonMap(int check, int color1, int color2, int color3);// chon map
+void trangtriran(); // ve con ran to bang ascii
 void gifile(); // ghi lich su nguoi choi
 void Doc_file(); // xem lich su nguoi choi
-void intro();
-void in4();
-void play();
-void khoitaoran();
-void veran();
-void dichuyenran(int x, int y);
-void ktqua();
-void vequa();
-void rananqua();
-void endgame();
-void time();
+void intro(); // intro vao game
+void in4(); // luu thong tin nguoi choi
+void play(); // chay cho choi
+void khoitaoran(); //tao ra toa do x,y cho ran
+void veran();// ve ran tu toa do x,y
+void dichuyenran(int x, int y);// su li man cho ran di chuyen, voi x,y la tham so truyen vao cua viec dieu khien ran o trong play();
+void ktqua();// tao ra toa do x,y cho qua
+void vequa(); // ve qua tu toa do qua da co
+void rananqua(); // kiem tra khi dau cua con ran dung qua
+void endgame(); // ham end game khi lost
 void Menu(); // lua chon
 void vetuong1(); // ban do 1
 bool kttuong1(); // kiem tra cham tuong 1
@@ -27,7 +26,7 @@ void vetuong3(); // ban do 3
 bool kttuong3(); // kiem tra cham tuong 3
 void veMap(); // ve ban do tong hop
 bool kiemtratuong(); // kiem tra tuong tong hop
-void Map1(char kitu);
+void Map1(char kitu); // ki tu truyen vao de ve map bang ki tu do
 void Map2(char kitu1, char kitu2);
 void Map3(char kitu1, char kitu2);
 /// </summary>
