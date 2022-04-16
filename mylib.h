@@ -61,7 +61,6 @@ void veran() {
 	int z = 2;
 	if (diem % 3 == 0)z++;
 	textcolor(z);
-t
 	for (int i = 0; i < sl; i++) {
 		if (i == 0) {
 			gotoXY(tdx[i], tdy[i]); printf("0");
