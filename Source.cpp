@@ -29,11 +29,13 @@ bool kiemtratuong(); // kiem tra tuong tong hop
 void Map1(char kitu); // ki tu truyen vao de ve map bang ki tu do
 void Map2(char kitu1, char kitu2);
 void Map3(char kitu1, char kitu2);
+bool kiemtratonghop();
 /// </summary>
 int main() {
 	system("cls");
 	ShowCur(0);
 	do {
+		sl = 2;
 		Menu();
 		intro();
 		play();
@@ -42,4 +44,3 @@ int main() {
 	} while (ag);
 	textcolor(0);
 }
-
