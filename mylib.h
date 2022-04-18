@@ -2,6 +2,7 @@
 #include <conio.h> 
 #include<ctime> 
 #include <windows.h>
+#include <iostream>
 
 //============== dịch con trỏ hiện tại đến điểm có tọa độ (x,y) ==========
 void gotoXY(int x, int y) {
@@ -40,17 +41,16 @@ void textcolor(int x) {
 ////////
 FILE* d;
 int tdx[100] = { 0 }, tdy[100] = { 0 };
-int sl = 2;
+int sl = 10;
 int speed = -1;
 int xq = -1, yq = -1;
 int ag;
 char name[30];
-int diem;
+int diem=1;
 int map = 0; // lua chon che do choi
 int m3x[4] = { 0 }, m3y[4] = { 0 };
 /// ///////////////////////////////
-
-
+void quamap(int a);
 void khoitaoran() {
 	int x = 56; int y = 12;
 	for (int i = 0; i < sl; i++) {
@@ -61,14 +61,14 @@ void veran() {
 	int z = 2;
 	if (diem % 3 == 0)z++;
 	textcolor(z);
-	for (int i = 0; i < sl; i++) {
-		if (i == 0) {
-			gotoXY(tdx[i], tdy[i]); printf("0");
+		for (int i = 0; i < sl; i++) {
+			if (i == 0) {
+				gotoXY(tdx[i], tdy[i]); printf("0");
+			}
+			else {
+				gotoXY(tdx[i], tdy[i]); printf("%c", 149);
+			}
 		}
-		else {
-			gotoXY(tdx[i], tdy[i]); printf("%c", 149);
-		}
-	}
 }
 void dichuyenran(int x, int y) {
 	for (int i = sl; i > 0; i--) {
@@ -186,7 +186,7 @@ void endgame() {
 	ag = _getch();
 }
 void gifile() { // ghi lich su nguoi choi
-	d = fopen("history.txt", "a");
+	d = fopen("history.txt", "w");
 	for (int i = 0; i < strlen(name); i++) {
 		if (name[i] == '\n') name[i] = '\0';
 	}
@@ -195,7 +195,6 @@ void gifile() { // ghi lich su nguoi choi
 }
 void Doc_file() { // xem lich su nguoi choi
 	d = fopen("history.txt", "r");
-	if (d == nullptr) printf("CHUA CO DU LIEU\n"); // kiem tra su ton tai cua file
 	char str[128];
 	system("cls");
 	while (fgets(str, 128, d) != NULL)  //Xuất từng dòng ra màn hình
@@ -453,7 +452,7 @@ void vetuong3() { // ban do 3
 		gotoXY(18, y); printf("H");
 		gotoXY(95, y); printf("H");
 	}
-	
+
 }
 bool kttuong3() { // kiem tra cham tuong 3
 	// kiem tra tuong ngoai
@@ -525,6 +524,14 @@ void intro() {
 	in4();
 	system("cls");
 }
+bool kiemtratonghop() { // kiem tra tuong tong hop
+	for (int i = 1; i < sl; i++) {
+		if (tdx[0] == tdx[i] && tdy[0] == tdy[i]) return true;
+	}
+	if (map == 1) return kttuong1();
+	else if (map == 2) return kttuong2();
+	else if (map == 3) return kttuong3();
+}
 void Menu() {
 
 	vetuong1();
@@ -533,19 +540,19 @@ void Menu() {
 	int check = 1;
 	SetColor(15);
 	gotoXY(45, 6); printf("========= MENU =========");
-	SetColor(color1); gotoXY(52, 9); printf("%c  CHOI", 16); gotoXY(64, 9);
+	SetColor(color1); gotoXY(52, 9); printf(">  CHOI");
 	SetColor(color2); gotoXY(54, 12); printf("LICH SU");
 	while (true) { // chon choi hoac xem lich su
 		SetColor(13);
 		if (check == 1) {
-			color1 = 4; color2 = 2; color3 = 2;
+			color1 = 4; color2 = 2; color3 = 2; 
 		}
 		else if (check == 2) {
 			color1 = 2; color2 = 4; color3 = 2;
 		}
 		SetColor(15);
 		gotoXY(45, 6); printf("========= MENU =========");
-		SetColor(color1); gotoXY(55, 9); printf("CHOI"); gotoXY(64, 9);
+		SetColor(color1); gotoXY(55, 9); printf("CHOI");
 		SetColor(color2); gotoXY(54, 12); printf("LICH SU");
 		textcolor(7);
 		trangtriran();
@@ -580,12 +587,12 @@ void Menu() {
 				if (check == 1)
 				{
 					gotoXY(52, 12); printf(" ");
-					gotoXY(52, 9); printf("%c", 16);
+					gotoXY(52, 9); printf(">");
 				}
 				else if (check == 2)
 				{
 					gotoXY(52, 9); printf(" ");
-					gotoXY(52, 12); printf("%c", 16);
+					gotoXY(52, 12); printf(">");
 				}
 			}
 			else if (kitu == 13 && check == 1) {
@@ -613,7 +620,6 @@ void play() {
 	int x = tdx[0], y = tdy[0];
 	ktqua();
 	vequa();
-	diem = 0;
 	while (map) {
 		textcolor(2);
 		gotoXY(30, 1); printf("%s", name);
@@ -666,11 +672,48 @@ void play() {
 		else if (check == 2) {
 			x++;
 		}
-		if (kiemtratuong()) break;
+		if (kiemtratonghop()) break;
 		rananqua();
+		//quamap(diem);
+		if (diem >= 3)
+		{
+			if (map == 1 && diem % 3 ==0) {
+				map++;
+				vetuong2();
+			}
+			else if (map == 2 && diem % 5==0 ) {
+				map++;
+				system("cls");
+				vetuong3();
+				ktqua();
+				vequa();
+			}
+			else if (map == 3 && diem % 8 == 0) {
+				map=1;
+				system("cls");
+				vetuong1();
+				ktqua();
+				vequa();
+			}
+		}
 		dichuyenran(x, y);
 		Sleep(speed);
 	}
 	gifile();
 	system("cls");
+}
+void quamap(int a) {
+	if (a==10)
+	{
+		a = 12;
+		int x = 56, y = 12;
+		int tdx[100] = { 0 }, tdy[100] = { 0 };
+		khoitaoran();
+		veran();
+		system("cls");
+		vetuong2();
+		ktqua();
+		vequa();
+		
+	}
 }
