@@ -1,2 +1,2 @@
 # btlinc_conran
-// làm game nhóm con ran
+// làm game con ran
